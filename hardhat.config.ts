@@ -1,21 +1,15 @@
-require("dotenv").config();
-const { PRIVATE_KEY, MUMBAI_RPC_URL } = process.env;
-import { HardhatUserConfig } from "hardhat/config";
+import "@nomiclabs/hardhat-ethers";
 import "@nomicfoundation/hardhat-toolbox";
+import { HardhatUserConfig } from "hardhat/config";
+import * as dotenv from 'dotenv'
+dotenv.config()
+const { PRIVATE_KEY, ALCHEMY_API_HTTPS } = process.env;
 
 const config: HardhatUserConfig = {
-  solidity: {
-    version: "0.8.20",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  },
+  solidity: "0.8.20",
   networks: {
-    mumbai: {
-      url: MUMBAI_RPC_URL,
+    polygon: {
+      url: ALCHEMY_API_HTTPS,
       accounts: [`0x${PRIVATE_KEY}`],
     },
   },
